@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Callie AI Assistant – Calendly</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Announcement Banner -->
+  <div class="announcement-banner" id="announcementBanner">
+    <div class="banner-content">
+      <span class="badge" style="background:#8B5CF6; color:#fff;">BETA</span>
+      <p>Callie is now open in public beta for all Calendly users.</p>
+      <a href="index.html" class="banner-badge">Back to Home</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-container">
+      <div class="header-left">
+        <a href="index.html" class="logo" aria-label="Calendly Home">
+          <svg class="logo-icon" viewBox="0 0 32 32" fill="none">
+            <defs>
+              <linearGradient id="c-grad" x1="16" y1="0" x2="16" y2="32" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#6AB0FF"/>
+                <stop offset="1" stop-color="#4793EB"/>
+              </linearGradient>
+            </defs>
+            <path d="M32 16C32 28.07 26.56 32 16 32C5.44 32 0 28.05 0 16C0 3.95 5.44 0 16 0C26.56 0 32 3.95 32 16Z" fill="url(#c-grad)"/>
+            <path d="M16 28.58C7.7 28.58 3.42 25.49 3.42 16C3.42 6.51 7.7 3.42 16 3.42C24.3 3.42 28.58 6.51 28.58 16C28.58 25.49 24.3 28.58 16 28.58ZM22.85 9.19C18.46 4.8 11.84 4.31 8.06 8.09C4.27 11.88 4.76 18.5 9.15 22.89C13.54 27.27 20.16 27.76 23.94 23.98C27.73 20.2 27.24 13.57 22.85 9.19ZM16 20.34C17.77 20.34 19.27 19.12 19.82 17.44C19.87 17.29 20 17.18 20.16 17.18H22.05C22.21 17.18 22.34 17.33 22.32 17.49C21.9 21.18 19.77 22.44 16 22.44C11.78 22.44 9.61 20.86 9.61 16.04C9.61 11.21 11.78 9.64 16 9.64C19.77 9.64 21.9 10.89 22.32 14.59C22.34 14.75 22.21 14.89 22.05 14.89H20.16C20 14.89 19.87 14.79 19.82 14.64C19.27 12.95 17.77 11.73 16 11.73C13.77 11.73 11.96 13.66 11.96 16.04C11.96 18.41 13.77 20.34 16 20.34Z" fill="#fff"/>
+          </svg>
+          <span style="font-weight: 800; font-size: 20px; letter-spacing: -0.02em;">Calendly</span>
+        </a>
+        <nav class="main-nav">
+          <a href="scheduling.html" class="nav-link">Scheduling</a>
+          <a href="callie.html" class="nav-link" style="color: #8B5CF6; font-weight:700;">Callie AI</a>
+          <a href="notetaker.html" class="nav-link">Notetaker</a>
+          <a href="payments.html" class="nav-link">Payments</a>
+          <a href="pricing.html" class="nav-link">Pricing</a>
+        </nav>
+      </div>
+      <div class="header-right">
+        <a href="index.html" class="btn-secondary">Back to Home</a>
+        <a href="#" class="btn-primary" style="background:#8B5CF6;">Try Callie Free</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section" style="padding-bottom: 40px; background: linear-gradient(180deg, #F5F3FF 0%, #FFFFFF 100%);">
+      <div class="container">
+        <div class="hero-content">
+          <span class="section-eyebrow purple-text"><span class="tab-dot callie-dot"></span> Autonomous Scheduling</span>
+          <h1 class="hero-title" style="font-size: 48px;">Meet Callie, your 24/7 AI scheduling agent</h1>
+          <p class="hero-subtitle">Callie handles the conversation so you don't have to. Loop her into emails, Slack threads, or text messages, and she'll negotiate times and send calendar invitations autonomously.</p>
+          <div class="hero-cta-group">
+            <a href="#" class="btn-primary btn-lg" style="background:#8B5CF6;">Add Callie to Email</a>
+            <a href="index.html" class="btn-secondary btn-lg">Back to Overview</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-section" style="padding: 60px 0 100px;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow purple-text">How Callie Works</span>
+          <h2 class="section-title">Zero friction. Total control.</h2>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-visual">
+              <div class="step-icon-wrap purple">&#9993;</div>
+            </div>
+            <h3>1. CC Callie on Any Email</h3>
+            <p>Simply add callie@calendly.com to your thread and tell her what you need in plain English.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-visual">
+              <div class="step-icon-wrap purple">&#10024;</div>
+            </div>
+            <h3>2. Callie Analyzes & Proposes</h3>
+            <p>She analyzes all attendees' calendars, applies your custom preferences, and suggests optimal meeting options.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-visual">
+              <div class="step-icon-wrap purple">&#10004;</div>
+            </div>
+            <h3>3. Confirmed & Booked</h3>
+            <p>When the invitee replies with their chosen time, Callie creates calendar invites with video links attached.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+        <p>&copy; 2026 Calendly. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="index.html">Home</a>
+          <a href="scheduling.html">Scheduling</a>
+          <a href="notetaker.html">Notetaker</a>
+          <a href="payments.html">Payments</a>
+          <a href="pricing.html">Pricing</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

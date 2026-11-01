@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scheduling – Calendly</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Announcement Banner -->
+  <div class="announcement-banner" id="announcementBanner">
+    <div class="banner-content">
+      <svg class="banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a3 3 0 0 1 0 6"/><path d="M10 8v11a1 1 0 0 1 -1 1h-1a1 1 0 0 1 -1 -1v-5"/><path d="M12 8l4.524 -3.77a.9 .9 0 0 1 1.476 .692v12.156a.9 .9 0 0 1 -1.476 .692l-4.524 -3.77h-8a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h8"/></svg>
+      <p>Explore Calendly Scheduling — built to handle individual and team workflows.</p>
+      <a href="index.html" class="banner-badge">Back to Home</a>
+    </div>
+    <button class="banner-close" id="closeBanner" aria-label="Dismiss announcement">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6l-12 12"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-container">
+      <div class="header-left">
+        <a href="index.html" class="logo" aria-label="Calendly Home">
+          <svg class="logo-icon" viewBox="0 0 32 32" fill="none">
+            <defs>
+              <linearGradient id="c-grad" x1="16" y1="0" x2="16" y2="32" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#6AB0FF"/>
+                <stop offset="1" stop-color="#4793EB"/>
+              </linearGradient>
+            </defs>
+            <path d="M32 16C32 28.07 26.56 32 16 32C5.44 32 0 28.05 0 16C0 3.95 5.44 0 16 0C26.56 0 32 3.95 32 16Z" fill="url(#c-grad)"/>
+            <path d="M16 28.58C7.7 28.58 3.42 25.49 3.42 16C3.42 6.51 7.7 3.42 16 3.42C24.3 3.42 28.58 6.51 28.58 16C28.58 25.49 24.3 28.58 16 28.58ZM22.85 9.19C18.46 4.8 11.84 4.31 8.06 8.09C4.27 11.88 4.76 18.5 9.15 22.89C13.54 27.27 20.16 27.76 23.94 23.98C27.73 20.2 27.24 13.57 22.85 9.19ZM16 20.34C17.77 20.34 19.27 19.12 19.82 17.44C19.87 17.29 20 17.18 20.16 17.18H22.05C22.21 17.18 22.34 17.33 22.32 17.49C21.9 21.18 19.77 22.44 16 22.44C11.78 22.44 9.61 20.86 9.61 16.04C9.61 11.21 11.78 9.64 16 9.64C19.77 9.64 21.9 10.89 22.32 14.59C22.34 14.75 22.21 14.89 22.05 14.89H20.16C20 14.89 19.87 14.79 19.82 14.64C19.27 12.95 17.77 11.73 16 11.73C13.77 11.73 11.96 13.66 11.96 16.04C11.96 18.41 13.77 20.34 16 20.34Z" fill="#fff"/>
+          </svg>
+          <span style="font-weight: 800; font-size: 20px; letter-spacing: -0.02em;">Calendly</span>
+        </a>
+        <nav class="main-nav">
+          <a href="scheduling.html" class="nav-link" style="color: var(--color-primary); font-weight:700;">Scheduling</a>
+          <a href="callie.html" class="nav-link">Callie AI</a>
+          <a href="notetaker.html" class="nav-link">Notetaker</a>
+          <a href="payments.html" class="nav-link">Payments</a>
+          <a href="pricing.html" class="nav-link">Pricing</a>
+        </nav>
+      </div>
+      <div class="header-right">
+        <a href="index.html" class="btn-secondary">Back to Home</a>
+        <a href="#" class="btn-primary">Get started free</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" style="padding-bottom: 40px;">
+      <div class="container">
+        <div class="hero-content">
+          <span class="section-eyebrow blue-text"><span class="tab-dot scheduling-dot"></span> Calendly Scheduling</span>
+          <h1 class="hero-title" style="font-size: 48px;">Smart scheduling that puts you in complete control</h1>
+          <p class="hero-subtitle">Coordinate meetings without endless emails. Whether you're booking 1-on-1s, round-robin sales calls, or large group workshops, Calendly makes it effortless.</p>
+          <div class="hero-cta-group">
+            <a href="#" class="btn-primary btn-lg">Start for free</a>
+            <a href="index.html" class="btn-secondary btn-lg">View full platform</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Features Grid -->
+    <section class="how-section" style="padding: 60px 0 100px;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Key Capabilities</span>
+          <h2 class="section-title">Designed for every scheduling scenario</h2>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-visual">
+              <div class="step-icon-wrap blue">&#128197;</div>
+            </div>
+            <h3>1-on-1 Meetings</h3>
+            <p>Share your personalized link and let invitees pick a time that works across your connected calendars.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-visual">
+              <div class="step-icon-wrap purple">&#128101;</div>
+            </div>
+            <h3>Round Robin Scheduling</h3>
+            <p>Automatically distribute inbound meetings across team members based on availability, priority, or equal rotation.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-visual">
+              <div class="step-icon-wrap teal">&#9881;</div>
+            </div>
+            <h3>Custom Buffers & Limits</h3>
+            <p>Add 15-minute buffers before or after events and set a maximum limit of meetings per day to prevent burnout.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+        <p>&copy; 2026 Calendly. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="index.html">Home</a>
+          <a href="callie.html">Callie</a>
+          <a href="notetaker.html">Notetaker</a>
+          <a href="payments.html">Payments</a>
+          <a href="pricing.html">Pricing</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

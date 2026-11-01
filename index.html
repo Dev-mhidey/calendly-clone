@@ -1,0 +1,3362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendly – Meeting Scheduling Software & AI Meeting Tools</title>
+  <style>
+/* ========================================================
+   CALENDLY FRONTEND CLONE STYLESHEET
+   Clean, Modern, Responsive Design System
+   ======================================================== */
+
+:root {
+  --color-primary: #0060E6;
+  --color-primary-hover: #004EC2;
+  --color-primary-light: #EBF3FE;
+  --color-text-main: #0B0D0F;
+  --color-text-secondary: #475467;
+  --color-text-muted: #667085;
+  --color-bg-page: #FFFFFF;
+  --color-bg-warm: #FAF8F5;
+  --color-bg-subtle: #F6F7F9;
+  --color-border: #E4E7EC;
+  --color-border-subtle: #F0F2F5;
+  --color-shadow: rgba(16, 24, 40, 0.08);
+  --color-shadow-lg: rgba(16, 24, 40, 0.12);
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  --max-width: 1240px;
+  --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base & Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-bg-page);
+  color: var(--color-text-main);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+img, svg {
+  vertical-align: middle;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.container {
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* ========================================================
+   ANNOUNCEMENT BANNER
+   ======================================================== */
+.pure-banner-check {
+  display: none !important;
+}
+
+.pure-banner-check:checked + .announcement-banner {
+  display: none !important;
+}
+
+.announcement-banner {
+  background: #E8F1FD;
+  color: #0B0D0F;
+  border-bottom: 1px solid #D2E3FC;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 14px;
+  font-weight: 500;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.announcement-banner.hidden {
+  display: none;
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.banner-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.banner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #FFFFFF;
+  color: var(--color-primary);
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.banner-badge:hover {
+  background: #F0F6FF;
+}
+
+.banner-close {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #667085;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.banner-close:hover {
+  color: #0B0D0F;
+  background: rgba(0,0,0,0.05);
+}
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-close:hover {
+  color: #0B0D0F;
+  background: rgba(0,0,0,0.05);
+}
+
+/* ========================================================
+   HEADER & NAVIGATION
+   ======================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border-subtle);
+  transition: box-shadow 0.2s ease;
+}
+
+.site-header.scrolled {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.header-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.logo-text {
+  height: 22px;
+  width: auto;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 72px; /* full header height */
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-main);
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  cursor: pointer;
+  user-select: none;
+}
+
+.nav-link:hover {
+  background-color: var(--color-bg-subtle);
+  color: var(--color-primary);
+}
+
+.nav-link .chevron {
+  transition: transform 0.2s ease;
+  pointer-events: none;
+}
+
+.nav-item:hover .nav-link .chevron,
+.nav-item.open .nav-link .chevron {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menus */
+.dropdown-menu {
+  position: absolute;
+  top: 64px;
+  left: 0;
+  padding: 24px;
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 48px var(--color-shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s;
+  z-index: 1000;
+  display: flex;
+  gap: 28px;
+}
+
+/* Seamless bridge so mouse movement to menu is never dropped */
+.dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -24px;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background: transparent;
+}
+
+.nav-item:hover .dropdown-menu,
+.nav-item.open .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.product-dropdown {
+  width: 580px;
+}
+
+.solutions-dropdown {
+  width: 600px;
+}
+
+.resources-dropdown {
+  width: 560px;
+}
+
+.dropdown-column {
+  flex: 1;
+  display: flex;
+  flex-col: column;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dropdown-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+  padding-left: 8px;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+
+.dropdown-item:hover {
+  background: var(--color-bg-subtle);
+}
+
+.dropdown-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dropdown-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.scheduling-icon { background: #0060E6; }
+.ai-icon { background: #8B5CF6; }
+.notetaker-icon { background: #B89FFA; }
+.contacts-icon { background: #F8961F; }
+.payments-icon { background: #00BFA5; }
+
+.dropdown-item-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-main);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dropdown-item-desc {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  display: block;
+}
+
+.dropdown-link-item {
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-main);
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.dropdown-link-item:hover {
+  background: var(--color-bg-subtle);
+  color: var(--color-primary);
+  transform: translateX(2px);
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  background: #F2F4F7;
+  color: var(--color-text-secondary);
+  line-height: 1.2;
+}
+
+/* Header Buttons */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-main);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+}
+
+.btn-text:hover {
+  color: var(--color-primary);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-full);
+  color: var(--color-text-main);
+  background: #FFFFFF;
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-text-main);
+  background: var(--color-bg-subtle);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  background: var(--color-primary);
+  color: #FFFFFF;
+  border-radius: var(--radius-full);
+  box-shadow: 0 1px 3px rgba(0, 96, 230, 0.25);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-hover);
+  box-shadow: 0 4px 12px rgba(0, 96, 230, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-lg {
+  padding: 14px 28px;
+  font-size: 16px;
+}
+
+.mobile-menu-checkbox {
+  display: none !important;
+}
+
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  user-select: none;
+}
+
+.mobile-menu-btn span {
+  width: 22px;
+  height: 2px;
+  background: var(--color-text-main);
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.mobile-menu-checkbox:checked ~ .site-header .mobile-menu-btn span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-menu-checkbox:checked ~ .site-header .mobile-menu-btn span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-checkbox:checked ~ .site-header .mobile-menu-btn span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 72px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #FFFFFF;
+  padding: 24px;
+  overflow-y: auto;
+  z-index: 99;
+}
+
+.mobile-menu-checkbox:checked ~ .mobile-menu {
+  display: block;
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+details.mobile-nav-item {
+  width: 100%;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+details.mobile-nav-item summary {
+  list-style: none;
+  cursor: pointer;
+  outline: none;
+}
+
+details.mobile-nav-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 0;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--color-text-main);
+  text-align: left;
+}
+
+.mobile-nav-link svg {
+  transition: transform 0.2s ease;
+}
+
+details.mobile-nav-item[open] .mobile-nav-link svg {
+  transform: rotate(180deg);
+}
+
+.mobile-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--color-bg-subtle);
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+}
+
+.mobile-submenu a {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+}
+
+.mobile-menu-cta {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* ========================================================
+   SECTION 1: HERO
+   ======================================================== */
+.hero-section {
+  padding: 40px 16px 80px;
+  background: linear-gradient(180deg, #FAF8F5 0%, #FFFFFF 100%);
+}
+
+.hero-wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 840px;
+  margin: 0 auto 48px;
+}
+
+.hero-title {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--color-text-main);
+  margin-bottom: 20px;
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  max-width: 680px;
+  margin: 0 auto 32px;
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.btn-oauth {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #FFFFFF;
+  background: var(--color-text-main);
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.btn-oauth:hover {
+  background: #252c38;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.oauth-icon {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  border-radius: 4px;
+  padding: 2px;
+}
+
+.oauth-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-note {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.hero-note a {
+  color: var(--color-text-main);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.hero-note a:hover {
+  color: var(--color-primary);
+}
+
+/* ========================================================
+   HERO PRODUCT TABS & INTERACTIVE MOCKUPS
+   ======================================================== */
+.hero-tabs-section {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  box-shadow: 0 16px 48px var(--color-shadow);
+}
+
+.hero-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px;
+  background: var(--color-bg-subtle);
+  border-radius: var(--radius-full);
+  max-width: fit-content;
+  margin: 0 auto 36px;
+  flex-wrap: wrap;
+}
+
+.hero-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-full);
+  transition: var(--transition);
+  cursor: pointer;
+  user-select: none;
+}
+
+.hero-tab:hover {
+  color: var(--color-text-main);
+}
+
+/* Pure CSS Tab Controls */
+.pure-tab-radio {
+  display: none !important;
+}
+
+#tab_sched_input:checked ~ .hero-tabs-section label.label-sched,
+#tab_cal_input:checked ~ .hero-tabs-section label.label-cal,
+#tab_note_input:checked ~ .hero-tabs-section label.label-note,
+#tab_pay_input:checked ~ .hero-tabs-section label.label-pay {
+  background: #FFFFFF;
+  color: var(--color-text-main);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.tab-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.scheduling-dot { background: #0060E6; }
+.callie-dot { background: #8B5CF6; }
+.notetaker-dot { background: #B89FFA; }
+.payments-dot { background: #00BFA5; }
+
+/* Tab Panels */
+.hero-tab-panel {
+  display: none;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 48px;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+}
+
+#tab_sched_input:checked ~ .hero-tabs-section .panel-sched,
+#tab_cal_input:checked ~ .hero-tabs-section .panel-cal,
+#tab_note_input:checked ~ .hero-tabs-section .panel-note,
+#tab_pay_input:checked ~ .hero-tabs-section .panel-pay {
+  display: grid;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-panel-content h2 {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-text-main);
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.tab-panel-content p {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin-bottom: 24px;
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.link-arrow:hover {
+  gap: 12px;
+  color: var(--color-primary-hover);
+}
+
+.link-arrow svg {
+  transition: transform 0.2s ease;
+}
+
+.link-arrow:hover svg {
+  transform: translateX(4px);
+}
+
+/* Mockup Containers */
+.tab-panel-visual {
+  background: var(--color-bg-subtle);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border-subtle);
+}
+
+/* Scheduling Mockup */
+.scheduling-mockup {
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 440px;
+  border: 1px solid var(--color-border);
+}
+
+.mockup-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  margin-bottom: 16px;
+}
+
+.mockup-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0060E6, #6AB0FF);
+}
+
+.mockup-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.mockup-event {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.mockup-calendar {
+  margin-bottom: 16px;
+}
+
+.cal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.cal-nav button {
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-subtle);
+  font-size: 12px;
+}
+
+.cal-days {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  text-align: center;
+}
+
+.cal-grid span {
+  padding: 8px 4px;
+  font-size: 13px;
+  border-radius: var(--radius-sm);
+  color: #98A2B3;
+  cursor: default;
+}
+
+.cal-grid span.available {
+  color: var(--color-text-main);
+  font-weight: 600;
+  background: #F0F6FF;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.cal-grid span.available:hover {
+  background: #D8E7FD;
+}
+
+.cal-grid span.selected {
+  background: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.mockup-times {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-top: 8px;
+}
+
+.time-slot {
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.time-slot:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.time-slot.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+/* Callie (AI) Mockup */
+.callie-mockup {
+  width: 100%;
+  max-width: 440px;
+}
+
+.email-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.email-msg {
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  line-height: 1.4;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.email-msg.sent {
+  background: #FFFFFF;
+  align-self: flex-start;
+  border: 1px solid var(--color-border);
+}
+
+.email-msg.received {
+  background: #FFFFFF;
+  align-self: flex-start;
+  border: 1px solid var(--color-border);
+}
+
+.email-msg.callie-msg {
+  background: linear-gradient(135deg, #F5F3FF, #EDE9FE);
+  border: 1px solid #DDD6FE;
+  align-self: stretch;
+}
+
+.callie-badge-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #7C3AED;
+  margin-bottom: 6px;
+}
+
+.callie-sparkle {
+  font-size: 14px;
+}
+
+/* Notetaker Mockup */
+.notetaker-mockup {
+  width: 100%;
+  max-width: 420px;
+}
+
+.note-card {
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.note-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #7C3AED;
+  margin-bottom: 8px;
+}
+
+.note-card h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.note-time {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+}
+
+.note-section {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.note-section h5 {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+}
+
+.note-section ul {
+  padding-left: 20px;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.action-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: var(--color-text-main);
+}
+
+.action-item .check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #10B981;
+  color: #FFFFFF;
+  font-size: 11px;
+}
+
+.action-item .check.pending {
+  background: #F3F4F6;
+  color: #6B7280;
+  font-size: 16px;
+}
+
+/* Payments Mockup */
+.payments-mockup {
+  width: 100%;
+  max-width: 380px;
+}
+
+.payment-card {
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.payment-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.payment-card h4 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.payment-price {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--color-text-main);
+  margin-bottom: 16px;
+}
+
+.payment-details {
+  background: var(--color-bg-subtle);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.payment-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.payment-row.total {
+  border-top: 1px solid var(--color-border);
+  padding-top: 8px;
+  font-weight: 700;
+  color: var(--color-text-main);
+  font-size: 14px;
+}
+
+.payment-btn {
+  width: 100%;
+  padding: 12px;
+  background: #00BFA5;
+  color: #FFFFFF;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 15px;
+  box-shadow: 0 4px 12px rgba(0, 191, 165, 0.25);
+  margin-bottom: 12px;
+}
+
+.payment-btn:hover {
+  background: #00A892;
+}
+
+.payment-methods {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.pay-method {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  background: var(--color-bg-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+}
+
+/* ========================================================
+   SECTION 2: LOGOS / SOCIAL PROOF
+   ======================================================== */
+.logos-section {
+  padding: 60px 0;
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: #FFFFFF;
+}
+
+.logos-heading {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 32px;
+  letter-spacing: 0.02em;
+}
+
+.logos-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.logo-item {
+  height: 28px;
+  display: flex;
+  align-items: center;
+  opacity: 0.7;
+  filter: grayscale(100%);
+  transition: var(--transition);
+}
+
+.logo-item:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+.logo-item svg {
+  height: 28px;
+  width: auto;
+}
+
+/* ========================================================
+   SECTION 3: HOW IT WORKS
+   ======================================================== */
+.how-section {
+  padding: 100px 0;
+  background: var(--color-bg-page);
+}
+
+.section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 60px;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  font-size: 18px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.step-card {
+  position: relative;
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  transition: var(--transition);
+}
+
+.step-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px var(--color-shadow);
+  border-color: var(--color-border);
+}
+
+.step-number {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  font-size: 32px;
+  font-weight: 800;
+  color: #D0D5DD;
+  line-height: 1;
+}
+
+.step-visual {
+  margin-bottom: 24px;
+}
+
+.step-icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-icon-wrap.blue { background: #0060E6; box-shadow: 0 8px 16px rgba(0, 96, 230, 0.25); }
+.step-icon-wrap.purple { background: #8B5CF6; box-shadow: 0 8px 16px rgba(139, 92, 246, 0.25); }
+.step-icon-wrap.teal { background: #00BFA5; box-shadow: 0 8px 16px rgba(0, 191, 165, 0.25); }
+
+.step-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: 12px;
+}
+
+.step-card p {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* ========================================================
+   SECTION 4: INTEGRATIONS
+   ======================================================== */
+.integrations-section {
+  padding: 100px 0;
+  background: linear-gradient(180deg, #FAF8F5 0%, #FFFFFF 100%);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.integrations-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.integrations-content .section-title {
+  text-align: left;
+}
+
+.integrations-content .section-subtitle {
+  margin-bottom: 28px;
+}
+
+.integrations-grid-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.int-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.int-row:nth-child(2) {
+  padding-left: 32px;
+}
+
+.integration-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 14px 20px;
+  box-shadow: 0 4px 16px var(--color-shadow);
+  transition: var(--transition);
+  min-width: 170px;
+}
+
+.integration-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--color-shadow-lg);
+  border-color: var(--color-primary);
+}
+
+.int-logo {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.int-logo svg {
+  width: 28px;
+  height: 28px;
+}
+
+.integration-card span {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+/* ========================================================
+   SECTION 5: TESTIMONIALS & STATS
+   ======================================================== */
+.testimonials-section {
+  padding: 100px 0;
+  background: var(--color-bg-page);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 64px;
+}
+
+.testimonial-card {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: 0 4px 20px var(--color-shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px var(--color-shadow-lg);
+}
+
+.testimonial-card.featured {
+  border-color: #DDD6FE;
+  background: linear-gradient(180deg, #FAF8FF 0%, #FFFFFF 100%);
+}
+
+.stars {
+  color: #F59E0B;
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+.testimonial-text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text-main);
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.author-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.author-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.author-role {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* Stats Bar */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1.1;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+.stat-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+/* ========================================================
+   CTA SECTION
+   ======================================================== */
+.cta-section {
+  padding: 40px 0 100px;
+}
+
+.cta-card {
+  background: #0B0D0F;
+  color: #FFFFFF;
+  border-radius: var(--radius-xl);
+  padding: 72px 32px;
+  text-align: center;
+  background-image: radial-gradient(circle at 50% 0%, #1E3A8A 0%, #0B0D0F 70%);
+}
+
+.cta-card h2 {
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.cta-card p {
+  font-size: 18px;
+  color: #94A3B8;
+  max-width: 600px;
+  margin: 0 auto 36px;
+}
+
+.cta-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.cta-card .btn-secondary {
+  color: #FFFFFF;
+  background: transparent;
+  border-color: #334155;
+}
+
+.cta-card .btn-secondary:hover {
+  background: #1E293B;
+  border-color: #475569;
+}
+
+.cta-note {
+  font-size: 13px !important;
+  color: #64748B !important;
+  margin-bottom: 0 !important;
+}
+
+/* ========================================================
+   FOOTER
+   ======================================================== */
+.site-footer {
+  background: #0B0D0F;
+  color: #94A3B8;
+  padding: 80px 0 32px;
+  border-top: 1px solid #1E293B;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr repeat(4, 1fr);
+  gap: 48px;
+  margin-bottom: 64px;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-tagline {
+  font-size: 15px;
+  color: #64748B;
+  max-width: 240px;
+}
+
+.social-links {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.social-links a {
+  color: #64748B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #1E293B;
+  transition: var(--transition);
+}
+
+.social-links a:hover {
+  color: #FFFFFF;
+  background: var(--color-primary);
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-col h4 {
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.footer-col a {
+  font-size: 14px;
+  color: #94A3B8;
+  transition: var(--transition);
+}
+
+.footer-col a:hover {
+  color: #FFFFFF;
+  transform: translateX(2px);
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 32px;
+  border-top: 1px solid #1E293B;
+  font-size: 13px;
+  color: #64748B;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-legal {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-legal a:hover {
+  color: #FFFFFF;
+}
+
+/* ========================================================
+   PRODUCT FEATURE SHOWCASE SECTIONS (4 SECTIONS)
+   ======================================================== */
+.product-feature-section {
+  padding: 100px 0;
+  background: #FFFFFF;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.product-feature-section.alternate {
+  background: var(--color-bg-warm);
+}
+
+.feature-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.feature-layout.reverse {
+  direction: rtl;
+}
+
+.feature-layout.reverse > * {
+  direction: ltr;
+}
+
+.feature-content .section-title {
+  text-align: left;
+  font-size: 38px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.feature-content .section-subtitle {
+  text-align: left;
+  margin-bottom: 28px;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.feature-checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.feature-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.feature-checklist strong {
+  color: var(--color-text-main);
+}
+
+.feature-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 13px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.purple-check {
+  background: #F3E8FF;
+  color: #7C3AED;
+}
+
+.lavender-check {
+  background: #EDE9FE;
+  color: #6D28D9;
+}
+
+.teal-check {
+  background: #E6FFFA;
+  color: #00BFA5;
+}
+
+.blue-text { color: var(--color-primary); }
+.purple-text { color: #8B5CF6; }
+.lavender-text { color: #7C3AED; }
+.teal-text { color: #00BFA5; }
+
+.feature-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.feature-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Feature Showcase Card 1: Scheduling */
+.feature-card-showcase {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  box-shadow: 0 16px 40px var(--color-shadow);
+  width: 100%;
+  max-width: 480px;
+}
+
+.showcase-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.event-badge-pill {
+  font-size: 12px;
+  font-weight: 700;
+  background: #EFF6FF;
+  color: #1D4ED8;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+.status-online {
+  font-size: 12px;
+  font-weight: 600;
+  color: #10B981;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-online::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10B981;
+}
+
+.feature-card-showcase h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.showcase-desc {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-bottom: 24px;
+}
+
+.calendar-mini-interactive {
+  background: var(--color-bg-subtle);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.cal-mini-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.timezone-tag {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.slots-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.slot-pill {
+  padding: 10px;
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-main);
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.slot-pill:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.slot-pill.active {
+  background: var(--color-primary);
+  color: #FFFFFF;
+  border-color: var(--color-primary);
+}
+
+.showcase-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.host-avatars {
+  display: flex;
+}
+
+.avatar-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #FFFFFF;
+  border: 2px solid #FFFFFF;
+  margin-left: -6px;
+}
+
+.avatar-circle:first-child { margin-left: 0; }
+.av1 { background: #3B82F6; }
+.av2 { background: #EC4899; }
+.av3 { background: #6B7280; }
+
+.host-label {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* Feature Showcase Card 2: Callie AI */
+.ai-chat-bubble-card {
+  background: #FFFFFF;
+  border: 1px solid #DDD6FE;
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  box-shadow: 0 16px 40px rgba(124, 58, 237, 0.08);
+  width: 100%;
+  max-width: 480px;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #EDE9FE;
+  margin-bottom: 20px;
+}
+
+.ai-avatar-sparkle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7C3AED, #A78BFA);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #FFFFFF;
+}
+
+.ai-status {
+  display: block;
+  font-size: 12px;
+  color: #7C3AED;
+  font-weight: 500;
+}
+
+.chat-thread-box {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.chat-bubble {
+  border-radius: var(--radius-lg);
+  padding: 14px 18px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.sender-name {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.user-bubble {
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-main);
+  align-self: flex-start;
+  max-width: 88%;
+}
+
+.user-bubble .sender-name {
+  color: var(--color-text-muted);
+}
+
+.ai-bubble {
+  background: #F5F3FF;
+  border: 1px solid #DDD6FE;
+  color: #1E1B4B;
+  align-self: flex-end;
+  max-width: 92%;
+}
+
+.ai-bubble .sender-name {
+  color: #7C3AED;
+}
+
+.ai-suggested-times {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ai-time-chip {
+  background: #FFFFFF;
+  border: 1px solid #C4B5FD;
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  font-weight: 600;
+  color: #6D28D9;
+  font-size: 13px;
+}
+
+.confirmation-bubble {
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  color: #065F46;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Feature Showcase Card 3: Notetaker */
+.notetaker-doc-mockup {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  box-shadow: 0 16px 40px var(--color-shadow);
+  width: 100%;
+  max-width: 480px;
+}
+
+.doc-title-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.doc-icon {
+  font-size: 28px;
+}
+
+.doc-title-bar h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.doc-meta {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.doc-block {
+  margin-bottom: 18px;
+}
+
+.doc-block h5 {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.doc-block p {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.todo-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color-text-main);
+  padding: 6px 0;
+}
+
+.todo-row.done {
+  color: var(--color-text-secondary);
+}
+
+.todo-row .box {
+  color: #7C3AED;
+  font-size: 16px;
+}
+
+.doc-synced-tags {
+  display: flex;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border-subtle);
+  flex-wrap: wrap;
+}
+
+.sync-tag {
+  font-size: 12px;
+  font-weight: 600;
+  color: #4B5563;
+  background: #F3F4F6;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+
+/* Feature Showcase Card 4: Payments */
+.checkout-card-preview {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  box-shadow: 0 16px 40px var(--color-shadow);
+  width: 100%;
+  max-width: 440px;
+}
+
+.checkout-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.secure-badge {
+  font-size: 12px;
+  font-weight: 600;
+  color: #059669;
+}
+
+.brand-pill {
+  font-size: 11px;
+  font-weight: 700;
+  color: #6366F1;
+  background: #EEF2FF;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.checkout-summary {
+  background: var(--color-bg-subtle);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--color-text-main);
+  margin-bottom: 8px;
+}
+
+.summary-item.sub {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.summary-divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: 12px 0;
+}
+
+.summary-item.total {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.total-amount {
+  font-size: 18px;
+  color: #059669;
+}
+
+.payment-method-selector {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.pay-option {
+  flex: 1;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 10px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: var(--transition);
+}
+
+.pay-option.selected,
+.pay-option:has(input:checked) {
+  border-color: #00BFA5;
+  background: #F0FDFA;
+  color: #0F766E;
+}
+
+.receipt-note {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* ========================================================
+   RESPONSIVE DESIGN / MEDIA QUERIES
+   ======================================================== */
+@media (max-width: 1024px) {
+  .main-nav {
+    display: none;
+  }
+  .header-right .btn-text {
+    display: none;
+  }
+  .mobile-menu-btn {
+    display: flex;
+  }
+  .hero-tab-panel {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .tab-panel-content {
+    text-align: center;
+  }
+  .link-arrow {
+    justify-content: center;
+  }
+  .integrations-layout {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .integrations-content .section-title {
+    text-align: center;
+  }
+  .integrations-content .btn-primary {
+    margin: 0 auto;
+  }
+  .feature-layout,
+  .feature-layout.reverse {
+    grid-template-columns: 1fr;
+    direction: ltr;
+    gap: 40px;
+    text-align: center;
+  }
+  .feature-layout.reverse > * {
+    direction: ltr;
+  }
+  .feature-content .section-title,
+  .feature-content .section-subtitle {
+    text-align: center;
+  }
+  .feature-checklist li {
+    text-align: left;
+  }
+  .feature-actions {
+    justify-content: center;
+  }
+  .steps-grid,
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+  .stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: 38px;
+  }
+  .hero-subtitle {
+    font-size: 17px;
+  }
+  .hero-tabs {
+    border-radius: var(--radius-lg);
+  }
+  .hero-tab {
+    flex: 1 1 40%;
+    justify-content: center;
+  }
+  .stats-bar {
+    grid-template-columns: 1fr;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .header-right .btn-secondary {
+    display: none;
+  }
+}
+
+</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ============ ANNOUNCEMENT BANNER ============ -->
+  <input type="checkbox" id="closeBannerCheck" class="pure-banner-check" hidden />
+  <div class="announcement-banner" id="announcementBanner">
+    <div class="banner-content">
+      <svg class="banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a3 3 0 0 1 0 6"/><path d="M10 8v11a1 1 0 0 1 -1 1h-1a1 1 0 0 1 -1 -1v-5"/><path d="M12 8l4.524 -3.77a.9 .9 0 0 1 1.476 .692v12.156a.9 .9 0 0 1 -1.476 .692l-4.524 -3.77h-8a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h8"/></svg>
+      <p>Introducing the new Calendly, built to handle all of the work around meetings.</p>
+      <a href="scheduling.html" class="banner-badge">Learn more <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></svg></a>
+    </div>
+    <label for="closeBannerCheck" class="banner-close" aria-label="Dismiss announcement">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6l-12 12"/><path d="M6 6l12 12"/></svg>
+    </label>
+  </div>
+
+  <!-- ============ HEADER / NAVIGATION ============ -->
+  <input type="checkbox" id="mobileMenuCheckbox" class="mobile-menu-checkbox" hidden />
+  <header class="site-header" id="siteHeader">
+    <div class="header-container">
+      <div class="header-left">
+        <!-- Calendly Logo -->
+        <a href="index.html" class="logo" aria-label="Calendly Home">
+          <svg class="logo-icon" viewBox="0 0 32 32" fill="none">
+            <defs>
+              <linearGradient id="calendly-grad" x1="16" y1="0" x2="16" y2="32" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#6AB0FF"/>
+                <stop offset="1" stop-color="#4793EB"/>
+              </linearGradient>
+            </defs>
+            <path d="M32 16C32 28.07 26.56 32 16 32C5.44 32 0 28.05 0 16C0 3.95 5.44 0 16 0C26.56 0 32 3.95 32 16Z" fill="url(#calendly-grad)"/>
+            <path d="M16 28.58C7.7 28.58 3.42 25.49 3.42 16C3.42 6.51 7.7 3.42 16 3.42C24.3 3.42 28.58 6.51 28.58 16C28.58 25.49 24.3 28.58 16 28.58ZM22.85 9.19C18.46 4.8 11.84 4.31 8.06 8.09C4.27 11.88 4.76 18.5 9.15 22.89C13.54 27.27 20.16 27.76 23.94 23.98C27.73 20.2 27.24 13.57 22.85 9.19ZM16 20.34C17.77 20.34 19.27 19.12 19.82 17.44C19.87 17.29 20 17.18 20.16 17.18H22.05C22.21 17.18 22.34 17.33 22.32 17.49C21.9 21.18 19.77 22.44 16 22.44C11.78 22.44 9.61 20.86 9.61 16.04C9.61 11.21 11.78 9.64 16 9.64C19.77 9.64 21.9 10.89 22.32 14.59C22.34 14.75 22.21 14.89 22.05 14.89H20.16C20 14.89 19.87 14.79 19.82 14.64C19.27 12.95 17.77 11.73 16 11.73C13.77 11.73 11.96 13.66 11.96 16.04C11.96 18.41 13.77 20.34 16 20.34Z" fill="#fff"/>
+          </svg>
+          <svg class="logo-text" viewBox="0 0 117 28" fill="none">
+            <g fill="#0b0d0f">
+              <path d="M10.29 0.86C11.75 0.86 13.08 1.13 14.31 1.69C15.53 2.24 16.57 2.96 17.44 3.87C18.31 4.77 18.97 5.77 19.44 6.85L15.75 8.35C15.26 7.29 14.54 6.42 13.57 5.74C12.6 5.06 11.51 4.72 10.29 4.72C9.16 4.72 8.12 5.02 7.17 5.62C6.23 6.22 5.49 7.04 4.95 8.06C4.41 9.08 4.14 10.22 4.14 11.48C4.14 12.74 4.41 13.88 4.95 14.9C5.49 15.92 6.23 16.73 7.17 17.34C8.12 17.94 9.16 18.23 10.29 18.23C11.51 18.23 12.6 17.89 13.57 17.22C14.54 16.54 15.43 15.61 16.03 14.8L19.16 16.94C18.65 17.67 18.09 18.41 17.44 19.09C16.57 20 15.53 20.72 14.31 21.28C13.08 21.83 11.75 22.1 10.29 22.1C8.39 22.1 6.66 21.64 5.09 20.7C3.52 19.77 2.28 18.49 1.37 16.87C0.46 15.24 0 13.44 0 11.48C0 9.51 0.46 7.72 1.37 6.09C2.28 4.47 3.52 3.19 5.09 2.26C6.66 1.33 8.39 0.86 10.29 0.86Z"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M27.67 6.31C29.59 6.31 31.29 6.89 32.56 7.85C33.73 8.72 34.49 10.41 34.49 12.59V21.85H30.54V20.04C30.03 20.6 29.39 21.08 28.6 21.45C27.65 21.91 26.73 22.14 25.56 22.14C24.56 22.14 23.8 21.96 23 21.61C22.21 21.26 21.58 20.76 21.12 20.11C20.66 19.45 20.43 18.69 20.43 17.81C20.43 16.25 21.1 14.97 22.29 14.21C23.48 13.45 24.61 13.11 26.39 12.95L28.77 12.78C29.29 12.74 29.92 12.65 30.17 12.38C30.38 12.16 30.57 11.88 30.57 11.42C30.57 10.73 29.93 10 28.84 9.79C27.66 9.57 26.48 9.78 25.7 10.06C24.64 10.43 23.39 11.24 22.6 12L20.39 9.35C21.35 8.32 22.44 7.56 23.77 7.02C25.08 6.49 26.26 6.31 27.67 6.31ZM30.54 15.23C30.46 15.28 30.39 15.32 30.3 15.35C30.04 15.45 29.63 15.53 29.09 15.59L26.36 15.88C25.73 15.96 25.25 16.14 24.9 16.42C24.56 16.7 24.38 17.06 24.38 17.49C24.38 17.96 24.57 18.33 24.93 18.6C25.3 18.87 25.81 19.01 26.46 19.01C27.17 19.01 27.84 18.84 28.46 18.51C29.09 18.18 29.59 17.75 29.97 17.21C30.35 16.67 30.54 16.11 30.54 15.53V15.23Z"/>
+              <path d="M40.87 21.84H36.92V0H40.87V21.84Z"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M50.43 6.31C54.54 6.31 57.55 9.47 57.55 13.82L47.35 16.63C47.97 17.69 49.43 18.66 50.88 18.66C52.87 18.66 54.45 17.71 55.92 16.2L58.2 18.83C56.2 20.86 53.93 22.12 50.6 22.12C45.96 22.12 42.66 18.99 42.66 14.07C42.66 9.65 45.64 6.31 50.43 6.31ZM50.25 9.57C48.52 9.57 46.42 10.56 46.42 13.25V13.39L53.15 11.47C52.89 10.38 51.61 9.57 50.25 9.57Z"/>
+              <path d="M68.15 6.32C69.35 6.32 70.42 6.59 71.36 7.13C72.29 7.67 73.02 8.42 73.53 9.37C74.04 10.33 74.29 11.41 74.29 12.61V21.85H70.31V13.31C70.31 12.66 70.17 12.08 69.88 11.57C69.6 11.06 69.19 10.66 68.67 10.38C68.15 10.09 67.54 9.95 66.86 9.95C66.21 9.95 65.62 10.09 65.1 10.38C64.58 10.66 64.16 11.06 63.86 11.57C63.55 12.08 63.4 12.66 63.4 13.31V21.85H59.42V6.61H63.4V8.58C63.82 8.04 64.33 7.58 64.94 7.2C65.88 6.61 66.95 6.32 68.15 6.32Z"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M92.23 21.84H88.24V20.04C87.87 20.44 87.46 20.8 87 21.11C85.96 21.8 84.76 22.14 83.4 22.14C82.04 22.14 80.8 21.8 79.68 21.11C78.56 20.42 77.68 19.47 77.04 18.26C76.4 17.05 76.08 15.7 76.08 14.23C76.08 12.77 76.4 11.44 77.04 10.23C77.68 9.02 78.56 8.06 79.68 7.37C80.8 6.67 82.04 6.32 83.4 6.32C84.76 6.32 85.96 6.66 87 7.35C87.46 7.66 87.87 8.01 88.24 8.42V0H92.23V21.84ZM84.23 9.98C83.48 9.98 82.8 10.17 82.19 10.54C81.58 10.91 81.1 11.42 80.74 12.07C80.39 12.72 80.21 13.44 80.21 14.23C80.21 15.02 80.39 15.74 80.74 16.4C81.1 17.06 81.57 17.57 82.17 17.95C82.77 18.32 83.46 18.51 84.23 18.51C84.97 18.51 85.65 18.32 86.26 17.95C86.87 17.57 87.35 17.06 87.71 16.4C88.06 15.74 88.24 15.02 88.24 14.23C88.24 13.44 88.06 12.72 87.71 12.07C87.35 11.42 86.88 10.91 86.28 10.54C85.68 10.17 84.99 9.98 84.23 9.98Z"/>
+              <path d="M98.59 21.84H94.64V0H98.59V21.84Z"/>
+              <path d="M108.09 20.65L112.33 6.62H116.34L109.99 27.7H105.98L107.77 21.85H104.58L99.96 6.62H104.2L108.09 20.65Z"/>
+            </g>
+          </svg>
+        </a>
+        <nav class="main-nav" id="mainNav">
+          <div class="nav-item has-dropdown">
+            <a href="scheduling.html" class="nav-link" id="productNavBtn">
+              Product
+              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6l6 -6"/></svg>
+            </a>
+            <div class="dropdown-menu product-dropdown">
+              <div class="dropdown-column">
+                <span class="dropdown-label">Flagship Products</span>
+                <a href="scheduling.html" class="dropdown-item">
+                  <div class="dropdown-icon scheduling-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/></svg>
+                  </div>
+                  <div>
+                    <span class="dropdown-item-title">Scheduling</span>
+                    <span class="dropdown-item-desc">Smart booking for 1-on-1 & teams</span>
+                  </div>
+                </a>
+                <a href="callie.html" class="dropdown-item">
+                  <div class="dropdown-icon ai-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.58-3.25 3.93"/><path d="M8.24 4.43A4 4 0 0 1 16 6"/><circle cx="12" cy="18" r="4"/><path d="M12 14v-4"/></svg>
+                  </div>
+                  <div>
+                    <span class="dropdown-item-title">Callie <span class="badge">Beta</span></span>
+                    <span class="dropdown-item-desc">24/7 autonomous AI assistant</span>
+                  </div>
+                </a>
+                <a href="notetaker.html" class="dropdown-item">
+                  <div class="dropdown-icon notetaker-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"/><path d="M9 17h6"/><path d="M9 13h6"/></svg>
+                  </div>
+                  <div>
+                    <span class="dropdown-item-title">Notetaker</span>
+                    <span class="dropdown-item-desc">Meeting recaps & action items</span>
+                  </div>
+                </a>
+                <a href="payments.html" class="dropdown-item">
+                  <div class="dropdown-icon payments-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+                  </div>
+                  <div>
+                    <span class="dropdown-item-title">Payments</span>
+                    <span class="dropdown-item-desc">Flexible ways to get paid</span>
+                  </div>
+                </a>
+              </div>
+              <div class="dropdown-column">
+                <span class="dropdown-label">Jump to Section</span>
+                <a href="#scheduling-section" class="dropdown-link-item">&bull; Scheduling Section</a>
+                <a href="#callie-section" class="dropdown-link-item">&bull; Callie AI Section</a>
+                <a href="#notetaker-section" class="dropdown-link-item">&bull; Notetaker Section</a>
+                <a href="#payments-section" class="dropdown-link-item">&bull; Payments Section</a>
+                <span class="dropdown-label" style="margin-top: 12px;">Platform</span>
+                <a href="#integrations" class="dropdown-link-item">Integrations</a>
+                <a href="#howItWorks" class="dropdown-link-item">How it works</a>
+                <a href="#testimonials" class="dropdown-link-item">Customer Reviews</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="nav-item has-dropdown">
+            <a href="#howItWorks" class="nav-link" id="solutionsNavBtn">
+              Solutions
+              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6l6 -6"/></svg>
+            </a>
+            <div class="dropdown-menu solutions-dropdown">
+              <div class="dropdown-column">
+                <span class="dropdown-label">By business size</span>
+                <a href="scheduling.html" class="dropdown-link-item">Individuals</a>
+                <a href="#pricing-section" class="dropdown-link-item">Small business</a>
+                <a href="#pricing-section" class="dropdown-link-item">Large companies</a>
+              </div>
+              <div class="dropdown-column">
+                <span class="dropdown-label">By team</span>
+                <a href="#scheduling-section" class="dropdown-link-item">Sales Teams</a>
+                <a href="#callie-section" class="dropdown-link-item">Marketing Teams</a>
+                <a href="#notetaker-section" class="dropdown-link-item">Customer Success</a>
+                <a href="#payments-section" class="dropdown-link-item">Recruiting</a>
+              </div>
+              <div class="dropdown-column">
+                <span class="dropdown-label">By industry</span>
+                <a href="#howItWorks" class="dropdown-link-item">Technology</a>
+                <a href="#howItWorks" class="dropdown-link-item">Education</a>
+                <a href="#payments-section" class="dropdown-link-item">Consulting & Finance</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="nav-item has-dropdown">
+            <a href="#testimonials" class="nav-link" id="resourcesNavBtn">
+              Resources
+              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6l6 -6"/></svg>
+            </a>
+            <div class="dropdown-menu resources-dropdown">
+              <div class="dropdown-column">
+                <span class="dropdown-label">Get started</span>
+                <a href="#howItWorks" class="dropdown-link-item">How Calendly Works</a>
+                <a href="#integrations" class="dropdown-link-item">Supported Integrations</a>
+                <a href="#pricing-section" class="dropdown-link-item">Plans & Pricing</a>
+              </div>
+              <div class="dropdown-column">
+                <span class="dropdown-label">Learn & Explore</span>
+                <a href="#testimonials" class="dropdown-link-item">Customer Stories</a>
+                <a href="callie.html" class="dropdown-link-item">Callie AI Demo</a>
+                <a href="notetaker.html" class="dropdown-link-item">Notetaker Demo</a>
+              </div>
+            </div>
+          </div>
+
+          <a href="#pricing-section" class="nav-link">Pricing</a>
+        </nav>
+      </div>
+      <div class="header-right">
+        <a href="#pricing-section" class="btn-text">Talk to sales</a>
+        <a href="#pricing-section" class="btn-secondary">Log In</a>
+        <a href="scheduling.html" class="btn-primary">Get started</a>
+      </div>
+      <label for="mobileMenuCheckbox" class="mobile-menu-btn" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </label>
+    </div>
+  </header>
+
+  <!-- ============ MOBILE MENU (Pure HTML & CSS Accordion) ============ -->
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-nav">
+      <details class="mobile-nav-item">
+        <summary class="mobile-nav-link">Product <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6l6 -6"/></svg></summary>
+        <div class="mobile-submenu">
+          <a href="scheduling.html">&rarr; Scheduling Page</a>
+          <a href="callie.html">&rarr; Callie AI Assistant</a>
+          <a href="notetaker.html">&rarr; Notetaker Page</a>
+          <a href="payments.html">&rarr; Payments Page</a>
+          <a href="#scheduling-section">&bull; Scheduling Section</a>
+          <a href="#callie-section">&bull; Callie AI Section</a>
+          <a href="#notetaker-section">&bull; Notetaker Section</a>
+          <a href="#payments-section">&bull; Payments Section</a>
+          <a href="#integrations">&bull; Integrations</a>
+        </div>
+      </details>
+      <details class="mobile-nav-item">
+        <summary class="mobile-nav-link">Solutions <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6l6 -6"/></svg></summary>
+        <div class="mobile-submenu">
+          <a href="scheduling.html">For Individuals</a>
+          <a href="#pricing-section">For Teams</a>
+          <a href="#scheduling-section">Sales</a>
+          <a href="#notetaker-section">Customer Success</a>
+        </div>
+      </details>
+      <details class="mobile-nav-item">
+        <summary class="mobile-nav-link">Resources <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6l6 -6"/></svg></summary>
+        <div class="mobile-submenu">
+          <a href="#howItWorks">How it works</a>
+          <a href="#integrations">Integrations</a>
+          <a href="#testimonials">Customer reviews</a>
+        </div>
+      </details>
+      <a href="#pricing-section" class="mobile-nav-link" style="display:block;">Pricing</a>
+    </nav>
+    <div class="mobile-menu-cta">
+      <a href="#pricing-section" class="btn-secondary full-width">Log In</a>
+      <a href="scheduling.html" class="btn-primary full-width">Get started for free</a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ============ SECTION 1: HERO ============ -->
+    <section class="hero-section" id="hero">
+      <div class="hero-wrapper">
+        <div class="hero-content">
+          <h1 class="hero-title">All the work around meetings, handled.</h1>
+          <p class="hero-subtitle">From AI-powered scheduling to automated meeting recaps and follow-ups, get the busywork done with fewer tools and less effort.</p>
+          <div class="hero-cta-group">
+            <button class="btn-oauth">
+              <span class="oauth-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                  <path d="M5.84 14.09A6.74 6.74 0 0 1 5.5 12c0-.72.12-1.43.34-2.09V7.07H2.18A11.03 11.03 0 0 0 1 12c0 1.78.42 3.47 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                </svg>
+              </span>
+              Sign up with Google
+            </button>
+            <button class="btn-oauth">
+              <span class="oauth-icon">
+                <svg viewBox="0 0 23 23" fill="none">
+                  <path d="M1 1h10v10H1z" fill="#F25022"/>
+                  <path d="M12 1h10v10H12z" fill="#7FBA00"/>
+                  <path d="M1 12h10v10H1z" fill="#00A4EF"/>
+                  <path d="M12 12h10v10H12z" fill="#FFB900"/>
+                </svg>
+              </span>
+              Sign up with Microsoft
+            </button>
+          </div>
+          <p class="hero-note"><a href="#">Sign up with email</a>  &bull;  No credit card required</p>
+        </div>
+
+        <!-- Pure CSS Interactive Tabs -->
+        <input type="radio" name="hero_tab_pure" id="tab_sched_input" checked class="pure-tab-radio" hidden />
+        <input type="radio" name="hero_tab_pure" id="tab_cal_input" class="pure-tab-radio" hidden />
+        <input type="radio" name="hero_tab_pure" id="tab_note_input" class="pure-tab-radio" hidden />
+        <input type="radio" name="hero_tab_pure" id="tab_pay_input" class="pure-tab-radio" hidden />
+
+        <div class="hero-tabs-section">
+          <div class="hero-tabs">
+            <label for="tab_sched_input" class="hero-tab label-sched">
+              <span class="tab-dot scheduling-dot"></span> Scheduling
+            </label>
+            <label for="tab_cal_input" class="hero-tab label-cal">
+              <span class="tab-dot callie-dot"></span> Callie <span class="badge">Beta</span>
+            </label>
+            <label for="tab_note_input" class="hero-tab label-note">
+              <span class="tab-dot notetaker-dot"></span> Notetaker <span class="badge">New</span>
+            </label>
+            <label for="tab_pay_input" class="hero-tab label-pay">
+              <span class="tab-dot payments-dot"></span> Payments <span class="badge">New</span>
+            </label>
+          </div>
+
+          <div class="hero-tab-panels">
+            <div class="hero-tab-panel panel-sched">
+              <div class="tab-panel-content">
+                <h2>Book meetings with the world's #1 scheduling tool</h2>
+                <p>Giving you complete control and total customization, Calendly is the easiest and most powerful way to find time to connect.</p>
+                <a href="scheduling.html" class="link-arrow">Explore Scheduling <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></svg></a>
+              </div>
+              <div class="tab-panel-visual">
+                <div class="scheduling-mockup">
+                  <div class="mockup-header">
+                    <div class="mockup-avatar"></div>
+                    <div>
+                      <div class="mockup-name">Sarah Johnson</div>
+                      <div class="mockup-event">30 Minute Meeting</div>
+                    </div>
+                  </div>
+                  <div class="mockup-calendar">
+                    <div class="cal-header">
+                      <span>October 2026</span>
+                      <div class="cal-nav"><button>&lt;</button><button>&gt;</button></div>
+                    </div>
+                    <div class="cal-days">
+                      <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span>
+                    </div>
+                    <div class="cal-grid">
+                      <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                      <span>12</span><span>13</span><span class="available">14</span><span class="available">15</span><span class="available">16</span>
+                      <span>19</span><span class="available">20</span><span class="available selected">21</span><span class="available">22</span><span class="available">23</span>
+                      <span class="available">26</span><span class="available">27</span><span class="available">28</span><span class="available">29</span><span class="available">30</span>
+                    </div>
+                  </div>
+                  <div class="mockup-times">
+                    <div class="time-slot">9:00am</div>
+                    <div class="time-slot">9:30am</div>
+                    <div class="time-slot active">10:00am</div>
+                    <div class="time-slot">10:30am</div>
+                    <div class="time-slot">11:00am</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-tab-panel panel-cal">
+              <div class="tab-panel-content">
+                <h2>Introducing your 24/7 AI scheduling assistant</h2>
+                <p>Add Callie to any email thread to coordinate scheduling on your behalf without switching tools or sacrificing control.</p>
+                <a href="callie.html" class="link-arrow">Explore Callie AI <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></svg></a>
+              </div>
+              <div class="tab-panel-visual">
+                <div class="callie-mockup">
+                  <div class="email-thread">
+                    <div class="email-msg sent">
+                      <p><strong>You:</strong> Can we find time to meet next week?</p>
+                    </div>
+                    <div class="email-msg callie-msg">
+                      <div class="callie-badge-inline">
+                        <span class="callie-sparkle">&#10024;</span> Callie
+                      </div>
+                      <p>I've checked your calendar. You're available Tuesday 2-4pm or Wednesday 10am-12pm. Want me to suggest these times?</p>
+                    </div>
+                    <div class="email-msg received">
+                      <p><strong>Alex:</strong> Wednesday 10am works perfectly!</p>
+                    </div>
+                    <div class="email-msg callie-msg">
+                      <div class="callie-badge-inline">
+                        <span class="callie-sparkle">&#10024;</span> Callie
+                      </div>
+                      <p>Done! Meeting confirmed for Wed, Oct 21 at 10:00am. Calendar invite sent to both of you.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-tab-panel panel-note">
+              <div class="tab-panel-content">
+                <h2>Actionable, shareable recaps for every meeting</h2>
+                <p>Finish the day knowing every meeting was captured, next steps were tracked, and follow-ups were handled.</p>
+                <a href="notetaker.html" class="link-arrow">Explore Notetaker <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></svg></a>
+              </div>
+              <div class="tab-panel-visual">
+                <div class="notetaker-mockup">
+                  <div class="note-card">
+                    <div class="note-header">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"/></svg>
+                      <span>Meeting Recap</span>
+                    </div>
+                    <h4>Q4 Planning – Product Team</h4>
+                    <p class="note-time">Oct 21, 2026 &bull; 45 min</p>
+                    <div class="note-section">
+                      <h5>Key Decisions</h5>
+                      <ul>
+                        <li>Launch new feature by Nov 15</li>
+                        <li>Increase test coverage to 90%</li>
+                      </ul>
+                    </div>
+                    <div class="note-section">
+                      <h5>Action Items</h5>
+                      <div class="action-item"><span class="check">&#10003;</span> Draft PRD by Oct 25 — Sarah</div>
+                      <div class="action-item"><span class="check pending">&bull;</span> Design review by Oct 28 — Mike</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-tab-panel panel-pay">
+              <div class="tab-panel-content">
+                <h2>Flexible, built-in payment tools</h2>
+                <p>Charge upfront for meetings, sell packages, and send invoices with payment features that make it easy to get paid.</p>
+                <a href="payments.html" class="link-arrow">Explore Payments <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></svg></a>
+              </div>
+              <div class="tab-panel-visual">
+                <div class="payments-mockup">
+                  <div class="payment-card">
+                    <div class="payment-icon">&#128176;</div>
+                    <h4>Consultation – 60 min</h4>
+                    <div class="payment-price">$150.00</div>
+                    <div class="payment-details">
+                      <div class="payment-row"><span>Subtotal</span><span>$150.00</span></div>
+                      <div class="payment-row"><span>Processing fee</span><span>$4.50</span></div>
+                      <div class="payment-row total"><span>Total</span><span>$154.50</span></div>
+                    </div>
+                    <button class="payment-btn">Pay & Confirm</button>
+                    <div class="payment-methods">
+                      <span class="pay-method">Visa</span>
+                      <span class="pay-method">MC</span>
+                      <span class="pay-method">Amex</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 2: TRUSTED BY / LOGOS ============ -->
+    <section class="logos-section" id="logos">
+      <div class="container">
+        <p class="logos-heading">Trusted by more than 100,000 companies</p>
+        <div class="logos-grid">
+          <div class="logo-item">
+            <svg viewBox="0 0 120 30" fill="none"><text x="10" y="22" font-family="Inter,sans-serif" font-size="16" font-weight="700" fill="#94a3b8">Dropbox</text></svg>
+          </div>
+          <div class="logo-item">
+            <svg viewBox="0 0 120 30" fill="none"><text x="10" y="22" font-family="Inter,sans-serif" font-size="16" font-weight="700" fill="#94a3b8">Spotify</text></svg>
+          </div>
+          <div class="logo-item">
+            <svg viewBox="0 0 120 30" fill="none"><text x="10" y="22" font-family="Inter,sans-serif" font-size="16" font-weight="700" fill="#94a3b8">Twilio</text></svg>
+          </div>
+          <div class="logo-item">
+            <svg viewBox="0 0 120 30" fill="none"><text x="10" y="22" font-family="Inter,sans-serif" font-size="16" font-weight="700" fill="#94a3b8">Lyft</text></svg>
+          </div>
+          <div class="logo-item">
+            <svg viewBox="0 0 120 30" fill="none"><text x="10" y="22" font-family="Inter,sans-serif" font-size="16" font-weight="700" fill="#94a3b8">Notion</text></svg>
+          </div>
+          <div class="logo-item">
+            <svg viewBox="0 0 120 30" fill="none"><text x="10" y="22" font-family="Inter,sans-serif" font-size="16" font-weight="700" fill="#94a3b8">Compass</text></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 3: HOW IT WORKS ============ -->
+    <section class="how-section" id="howItWorks">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">How it works</span>
+          <h2 class="section-title">Simple scheduling, powerful results</h2>
+          <p class="section-subtitle">Set up in minutes, save hours every week. Here's how Calendly streamlines your workflow.</p>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-visual">
+              <div class="step-icon-wrap blue">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M12 7v5l3 3"/></svg>
+              </div>
+            </div>
+            <h3>Set your availability</h3>
+            <p>Define when you're free to meet. Calendly connects to your calendar so there's never a double booking.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-visual">
+              <div class="step-icon-wrap purple">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M10 14l11 -11"/><path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5"/></svg>
+              </div>
+            </div>
+            <h3>Share your link</h3>
+            <p>Send your personalized Calendly link via email, embed it on your website, or add it to your email signature.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-visual">
+              <div class="step-icon-wrap teal">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M11 18l-2 -1l-6 3v-13l6 -3l6 3l6 -3v7.5"/><path d="M11 4v14"/><path d="M15 15m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M18.5 17.5l2.5 2.5"/></svg>
+              </div>
+            </div>
+            <h3>Meetings are booked</h3>
+            <p>Invitees pick a time that works for them, and the event is added to everyone's calendar automatically.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION: SCHEDULING SHOWCASE ============ -->
+    <section class="product-feature-section" id="scheduling-section">
+      <div class="container">
+        <div class="feature-layout">
+          <div class="feature-content">
+            <span class="section-eyebrow blue-text"><span class="tab-dot scheduling-dot"></span> Scheduling</span>
+            <h2 class="section-title">Smart scheduling that puts you in complete control</h2>
+            <p class="section-subtitle">Eliminate the back-and-forth emails. Share your custom availability, let invitees pick their slot, and automate reminders so everyone shows up on time.</p>
+            <ul class="feature-checklist">
+              <li>
+                <span class="feature-check">&#10003;</span>
+                <div>
+                  <strong>Round-robin & Collective events:</strong> Distribute incoming leads across your team or require multiple host attendees.
+                </div>
+              </li>
+              <li>
+                <span class="feature-check">&#10003;</span>
+                <div>
+                  <strong>Automatic timezone detection:</strong> Seamlessly locks time slots in local timezones for both host and invitee.
+                </div>
+              </li>
+              <li>
+                <span class="feature-check">&#10003;</span>
+                <div>
+                  <strong>Buffers & Daily limits:</strong> Protect your focus time with custom buffer periods before and after calls.
+                </div>
+              </li>
+              <li>
+                <span class="feature-check">&#10003;</span>
+                <div>
+                  <strong>Automated workflows:</strong> Send personalized SMS and email confirmations, reminders, and follow-up surveys.
+                </div>
+              </li>
+            </ul>
+            <div class="feature-actions">
+              <a href="scheduling.html" class="btn-primary">Explore Scheduling</a>
+              <a href="#howItWorks" class="link-arrow">See how it works <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></svg></a>
+            </div>
+          </div>
+          <div class="feature-visual">
+            <div class="feature-card-showcase">
+              <div class="showcase-header">
+                <div class="event-badge-pill">30 min call</div>
+                <span class="status-online">Available now</span>
+              </div>
+              <h3>Product Strategy & Discovery</h3>
+              <p class="showcase-desc">Select a date & time to sync with our senior product architecture team.</p>
+              <div class="calendar-mini-interactive">
+                <div class="cal-mini-header">
+                  <strong>November 2026</strong>
+                  <span class="timezone-tag">Time zone: Eastern Time (US)</span>
+                </div>
+                <div class="slots-container">
+                  <button class="slot-pill active">9:00 AM</button>
+                  <button class="slot-pill">10:30 AM</button>
+                  <button class="slot-pill">1:15 PM</button>
+                  <button class="slot-pill">3:00 PM</button>
+                  <button class="slot-pill">4:30 PM</button>
+                </div>
+              </div>
+              <div class="showcase-footer">
+                <div class="host-avatars">
+                  <span class="avatar-circle av1">JD</span>
+                  <span class="avatar-circle av2">EM</span>
+                  <span class="avatar-circle av3">+2</span>
+                </div>
+                <span class="host-label">4 team members ready to host</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION: CALLIE (AI ASSISTANT) SHOWCASE ============ -->
+    <section class="product-feature-section alternate" id="callie-section">
+      <div class="container">
+        <div class="feature-layout reverse">
+          <div class="feature-content">
+            <span class="section-eyebrow purple-text"><span class="tab-dot callie-dot"></span> Callie <span class="badge">Beta</span></span>
+            <h2 class="section-title">Your 24/7 autonomous scheduling assistant</h2>
+            <p class="section-subtitle">Just CC callie@calendly.com on any thread. Callie reads natural language, scans your calendar, proposes ideal times, handles reschedules, and sends invites.</p>
+            <ul class="feature-checklist">
+              <li>
+                <span class="feature-check purple-check">&#10003;</span>
+                <div>
+                  <strong>Effortless email coordination:</strong> Just write "Callie, find 30 mins for Alex and me next Tuesday" and watch her work.
+                </div>
+              </li>
+              <li>
+                <span class="feature-check purple-check">&#10003;</span>
+                <div>
+                  <strong>Contextual intelligence:</strong> Callie checks your preferences, avoids busy blocks, and prioritizes VIP clients.
+                </div>
+              </li>
+              <li>
+                <span class="feature-check purple-check">&#10003;</span>
+                <div>
+                  <strong>Seamless rescheduling:</strong> If plans change, participants just reply to the thread and Callie updates all calendars.
+                </div>
+              </li>
+            </ul>
+            <div class="feature-actions">
+              <a href="callie.html" class="btn-primary" style="background: #8B5CF6;">Meet Callie AI</a>
+            </div>
+          </div>
+          <div class="feature-visual">
+            <div class="ai-chat-bubble-card">
+              <div class="chat-header">
+                <div class="ai-avatar-sparkle">&#10024;</div>
+                <div>
+                  <strong>Callie AI Assistant</strong>
+                  <span class="ai-status">Active on thread &bull; 2s ago</span>
+                </div>
+              </div>
+              <div class="chat-thread-box">
+                <div class="chat-bubble user-bubble">
+                  <span class="sender-name">David (Client)</span>
+                  <p>"Hey! Can we find 45 minutes to go over the design specs sometime late this week?"</p>
+                </div>
+                <div class="chat-bubble ai-bubble">
+                  <span class="sender-name">Callie (AI)</span>
+                  <p>"Hi David! I looked at Sarah's calendar. Here are 3 times that work best for her:</p>
+                  <div class="ai-suggested-times">
+                    <span class="ai-time-chip">&bull; Thu, Nov 12 at 2:00 PM EST</span>
+                    <span class="ai-time-chip">&bull; Fri, Nov 13 at 10:30 AM EST</span>
+                    <span class="ai-time-chip">&bull; Fri, Nov 13 at 3:15 PM EST</span>
+                  </div>
+                  <p>Reply with whichever works and I'll send the calendar invite!"</p>
+                </div>
+                <div class="chat-bubble user-bubble">
+                  <span class="sender-name">David (Client)</span>
+                  <p>"Friday at 10:30 AM is ideal. Thanks Callie!"</p>
+                </div>
+                <div class="chat-bubble confirmation-bubble">
+                  <span>&#10004; Meeting booked for Fri, Nov 13 @ 10:30 AM EST &bull; Google Meet invite sent</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION: NOTETAKER SHOWCASE ============ -->
+    <section class="product-feature-section" id="notetaker-section">
+      <div class="container">
+        <div class="feature-layout">
+          <div class="feature-content">
+            <span class="section-eyebrow lavender-text"><span class="tab-dot notetaker-dot"></span> Notetaker <span class="badge">New</span></span>
+            <h2 class="section-title">Every meeting captured, distilled, and acted upon</h2>
+            <p class="section-subtitle">Calendly Notetaker automatically joins Zoom, Google Meet, and Microsoft Teams. It generates structured summaries, assigns action items, and syncs directly to your CRM.</p>
+            <ul class="feature-checklist">
+              <li>
+                <span class="feature-check lavender-check">&#10003;</span>
+                <div>
+                  <strong>AI-Powered Summaries:</strong> Instant executive recaps with key highlights, decisions, and takeaways.
+                </div>
+              </li>
+              <li>
+                <span class="feature-check lavender-check">&#10003;</span>
+                <div>
+                  <strong>Automated Action Items:</strong> Tracks commitments made during the meeting and attributes them to the right owner.
+                </div>
+              </li>
+              <li>
+                <span class="feature-check lavender-check">&#10003;</span>
+                <div>
+                  <strong>CRM & Tool Sync:</strong> Notes automatically log to Salesforce, HubSpot, Slack, and Notion without manual entry.
+                </div>
+              </li>
+            </ul>
+            <div class="feature-actions">
+              <a href="notetaker.html" class="btn-primary" style="background: #7C3AED;">Explore Notetaker</a>
+            </div>
+          </div>
+          <div class="feature-visual">
+            <div class="notetaker-doc-mockup">
+              <div class="doc-title-bar">
+                <span class="doc-icon">&#128221;</span>
+                <div>
+                  <h4>Sprint Retrospective & Roadmap Review</h4>
+                  <span class="doc-meta">Recorded via Zoom &bull; Duration: 42 min &bull; Oct 2026</span>
+                </div>
+              </div>
+              <div class="doc-block">
+                <h5>Executive Summary</h5>
+                <p>The team reviewed Q3 metrics (+28% MoM growth) and finalized the Q4 sprint roadmap. Approved shifting engineering resources to Callie AI integration.</p>
+              </div>
+              <div class="doc-block">
+                <h5>Action Items Assigned</h5>
+                <div class="todo-row done"><span class="box">&#9745;</span> Finalize API specs for webhooks — <strong>Alex K.</strong></div>
+                <div class="todo-row done"><span class="box">&#9745;</span> Update sales deck with new pricing tier — <strong>Rachel M.</strong></div>
+                <div class="todo-row"><span class="box">&#9744;</span> Schedule customer feedback interviews — <strong>Marcus T.</strong></div>
+              </div>
+              <div class="doc-synced-tags">
+                <span class="sync-tag">Synced to Salesforce</span>
+                <span class="sync-tag">Posted to #product-team Slack</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION: PAYMENTS SHOWCASE ============ -->
+    <section class="product-feature-section alternate" id="payments-section">
+      <div class="container">
+        <div class="feature-layout reverse">
+          <div class="feature-content">
+            <span class="section-eyebrow teal-text"><span class="tab-dot payments-dot"></span> Payments <span class="badge">New</span></span>
+            <h2 class="section-title">Seamless payments built directly into your booking flow</h2>
+            <p class="section-subtitle">Charge upfront for coaching sessions, consultations, webinars, or events. Connect your Stripe or PayPal account in seconds with zero friction.</p>
+            <ul class="feature-checklist">
+              <li>
+                <span class="feature-check teal-check">&#10003;</span>
+                <div>
+                  <strong>Collect payments before booking:</strong> Eliminate awkward invoice chasing and reduce cancellation rates.
+                </div>
+              </li>
+              <li>
+                <span class="feature-check teal-check">&#10003;</span>
+                <div>
+                  <strong>Multi-currency & Global cards:</strong> Accept Apple Pay, Google Pay, Visa, Mastercard, and international currencies.
+                </div>
+              </li>
+              <li>
+                <span class="feature-check teal-check">&#10003;</span>
+                <div>
+                  <strong>Packages & Subscriptions:</strong> Sell bundled hours, recurring coaching packages, and retainers.
+                </div>
+              </li>
+            </ul>
+            <div class="feature-actions">
+              <a href="payments.html" class="btn-primary" style="background: #00BFA5;">Explore Payments</a>
+            </div>
+          </div>
+          <div class="feature-visual">
+            <div class="checkout-card-preview">
+              <div class="checkout-top">
+                <span class="secure-badge">&#128274; 256-Bit SSL Secure Checkout</span>
+                <span class="brand-pill">Stripe Verified</span>
+              </div>
+              <div class="checkout-summary">
+                <div class="summary-item">
+                  <span>Executive 1-on-1 Consultation (60 min)</span>
+                  <strong>$250.00</strong>
+                </div>
+                <div class="summary-item sub">
+                  <span>Sales Tax (0%)</span>
+                  <span>$0.00</span>
+                </div>
+                <div class="summary-divider"></div>
+                <div class="summary-item total">
+                  <span>Total Due Now</span>
+                  <span class="total-amount">$250.00</span>
+                </div>
+              </div>
+              <div class="payment-method-selector">
+                <label class="pay-option selected">
+                  <input type="radio" name="pay" checked /> Credit Card
+                </label>
+                <label class="pay-option">
+                  <input type="radio" name="pay" /> Apple Pay
+                </label>
+                <label class="pay-option">
+                  <input type="radio" name="pay" /> PayPal
+                </label>
+              </div>
+              <button class="btn-primary full-width" style="background:#00BFA5; margin-top:16px;">Complete Booking & Pay $250</button>
+              <p class="receipt-note">Instant receipt and calendar invitation sent upon confirmation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 4: INTEGRATIONS ============ -->
+    <section class="integrations-section" id="integrations">
+      <div class="container">
+        <div class="integrations-layout">
+          <div class="integrations-content">
+            <span class="section-eyebrow">Integrations</span>
+            <h2 class="section-title">Connect with the tools you already use</h2>
+            <p class="section-subtitle">Calendly integrates with your tech stack to automate workflows, keep data in sync, and eliminate busywork.</p>
+            <a href="#" class="btn-primary" style="width: fit-content;">See all integrations</a>
+          </div>
+          <div class="integrations-grid-visual">
+            <div class="int-row">
+              <div class="integration-card">
+                <div class="int-logo google-cal">
+                  <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="#4285f4" stroke-width="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke="#4285f4" stroke-width="2"/></svg>
+                </div>
+                <span>Google Calendar</span>
+              </div>
+              <div class="integration-card">
+                <div class="int-logo zoom">
+                  <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="14" height="12" rx="2" fill="#2D8CFF" opacity="0.2"/><rect x="2" y="6" width="14" height="12" rx="2" stroke="#2D8CFF" stroke-width="2"/><path d="M16 10l4.5-3.5v11l-4.5-3.5" stroke="#2D8CFF" stroke-width="2"/></svg>
+                </div>
+                <span>Zoom</span>
+              </div>
+              <div class="integration-card">
+                <div class="int-logo salesforce">
+                  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#00A1E0" stroke-width="2"/><text x="7" y="16" font-size="10" fill="#00A1E0" font-weight="700">Sf</text></svg>
+                </div>
+                <span>Salesforce</span>
+              </div>
+            </div>
+            <div class="int-row">
+              <div class="integration-card">
+                <div class="int-logo slack">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z" fill="#E01E5A"/><path d="M20.5 10h-2v-1.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" fill="#E01E5A"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5z" fill="#2EB67D"/><path d="M3.5 14h2v1.5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5.67-1.5 1.5-1.5z" fill="#2EB67D"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z" fill="#ECB22E"/><path d="M14 20.5v-2h1.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5z" fill="#ECB22E"/><path d="M10 9.5c0 .83-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5z" fill="#36C5F0"/><path d="M10 3.5v2h-1.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5z" fill="#36C5F0"/></svg>
+                </div>
+                <span>Slack</span>
+              </div>
+              <div class="integration-card">
+                <div class="int-logo hubspot">
+                  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#FF7A59" stroke-width="2"/><text x="4" y="16" font-size="8" fill="#FF7A59" font-weight="700">Hub</text></svg>
+                </div>
+                <span>HubSpot</span>
+              </div>
+              <div class="integration-card">
+                <div class="int-logo outlook">
+                  <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="#0078D4" stroke-width="2"/><path d="M3 10l9 5l9-5" stroke="#0078D4" stroke-width="2"/></svg>
+                </div>
+                <span>Outlook</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 5: TESTIMONIALS / SOCIAL PROOF ============ -->
+    <section class="testimonials-section" id="testimonials">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">What our customers say</span>
+          <h2 class="section-title">Loved by teams everywhere</h2>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-text">"Calendly has eliminated so much back-and-forth when scheduling meetings. Our sales team books 40% more meetings now."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar" style="background:#6AB0FF;">JR</div>
+              <div>
+                <div class="author-name">Jamie Rodriguez</div>
+                <div class="author-role">VP of Sales, TechCorp</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card featured">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-text">"The new Notetaker feature is a game changer. Every meeting is captured with action items automatically tracked. It's saved our team hours each week."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar" style="background:#b89ffa;">SL</div>
+              <div>
+                <div class="author-name">Sarah Lin</div>
+                <div class="author-role">Product Manager, CloudBase</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-text">"I love how Calendly integrates with our CRM. Meeting data flows directly into Salesforce without any manual entry."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar" style="background:#5ddfd7;">MK</div>
+              <div>
+                <div class="author-name">Marcus Kim</div>
+                <div class="author-role">RevOps Lead, ScaleUp Inc</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats bar -->
+        <div class="stats-bar">
+          <div class="stat">
+            <div class="stat-number">100K+</div>
+            <div class="stat-label">Companies</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">200M+</div>
+            <div class="stat-label">Meetings booked</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">190+</div>
+            <div class="stat-label">Countries</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">4.7</div>
+            <div class="stat-label">Stars on G2</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA SECTION ============ -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-card">
+          <h2>Ready to simplify your scheduling?</h2>
+          <p>Join millions of professionals who trust Calendly for easy, efficient scheduling.</p>
+          <div class="cta-buttons">
+            <a href="#" class="btn-primary btn-lg">Get started for free</a>
+            <a href="#" class="btn-secondary btn-lg">Talk to sales</a>
+          </div>
+          <p class="cta-note">Free forever for individuals. No credit card required.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 6: PRICING COMPARISON ============ -->
+    <section class="how-section" id="pricing-section" style="padding: 70px 0 100px; background: #FAFAFB; border-top: 1px solid var(--color-border-subtle); border-bottom: 1px solid var(--color-border-subtle);">
+      <div class="container">
+        <div class="section-header" style="text-align: center; margin-bottom: 48px;">
+          <span class="section-eyebrow">Pick the perfect plan</span>
+          <h2 class="section-title">Transparent pricing for every team</h2>
+          <p class="section-subtitle" style="margin: 12px auto 0; max-width: 600px;">Whether you're an individual scheduler or managing a global enterprise, Calendly scales with you.</p>
+        </div>
+        <div class="steps-grid">
+          <!-- Free Plan -->
+          <div class="step-card" style="background:#fff; border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 36px 28px; text-align:center; box-shadow: 0 4px 16px rgba(0,0,0,0.04);">
+            <h3 style="font-size: 20px; font-weight: 700; color: var(--color-text-main);">Basic</h3>
+            <div style="font-size: 38px; font-weight: 800; margin: 16px 0 8px; color:var(--color-text-main);">$0</div>
+            <p style="margin-bottom: 24px; color: var(--color-text-muted); font-size: 14px;">Always free for individuals getting started.</p>
+            <a href="#" class="btn-secondary" style="width: 100%; display: block; text-align: center; margin-bottom: 24px;">Sign up free</a>
+            <ul class="feature-checklist" style="text-align: left; font-size: 14px; display: flex; flex-direction: column; gap: 12px;">
+              <li><span class="feature-check">&#10003;</span> 1 calendar connection</li>
+              <li><span class="feature-check">&#10003;</span> 1 active event type</li>
+              <li><span class="feature-check">&#10003;</span> Unlimited bookings</li>
+              <li><span class="feature-check">&#10003;</span> Automated event confirmations</li>
+            </ul>
+          </div>
+
+          <!-- Standard Plan -->
+          <div class="step-card" style="background:#fff; border: 2px solid var(--color-primary); border-radius: var(--radius-xl); padding: 36px 28px; box-shadow: 0 16px 36px var(--color-shadow); text-align:center; position:relative;">
+            <div style="position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:var(--color-primary); color:#fff; font-size:11px; font-weight:700; padding:3px 14px; border-radius:var(--radius-full); text-transform:uppercase; letter-spacing: 0.05em;">Most Popular</div>
+            <h3 style="font-size: 20px; font-weight: 700; color: var(--color-text-main);">Standard</h3>
+            <div style="font-size: 38px; font-weight: 800; margin: 16px 0 8px; color:var(--color-text-main);">$10 <span style="font-size: 14px; font-weight:500; color:var(--color-text-muted);">/ seat / mo</span></div>
+            <p style="margin-bottom: 24px; color: var(--color-text-muted); font-size: 14px;">For professionals needing powerful automation.</p>
+            <a href="#" class="btn-primary" style="width: 100%; display: block; text-align: center; margin-bottom: 24px;">Start 14-day trial</a>
+            <ul class="feature-checklist" style="text-align: left; font-size: 14px; display: flex; flex-direction: column; gap: 12px;">
+              <li><span class="feature-check">&#10003;</span> Unlimited active event types</li>
+              <li><span class="feature-check">&#10003;</span> 6 calendar connections per user</li>
+              <li><span class="feature-check">&#10003;</span> Automated email & SMS reminders</li>
+              <li><span class="feature-check">&#10003;</span> Collect payments via Stripe/PayPal</li>
+              <li><span class="feature-check">&#10003;</span> Callie AI Assistant Beta access</li>
+            </ul>
+          </div>
+
+          <!-- Teams Plan -->
+          <div class="step-card" style="background:#fff; border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 36px 28px; text-align:center; box-shadow: 0 4px 16px rgba(0,0,0,0.04);">
+            <h3 style="font-size: 20px; font-weight: 700; color: var(--color-text-main);">Teams</h3>
+            <div style="font-size: 38px; font-weight: 800; margin: 16px 0 8px; color:var(--color-text-main);">$16 <span style="font-size: 14px; font-weight:500; color:var(--color-text-muted);">/ seat / mo</span></div>
+            <p style="margin-bottom: 24px; color: var(--color-text-muted); font-size: 14px;">For teams needing round-robin routing & CRM sync.</p>
+            <a href="#" class="btn-secondary" style="width: 100%; display: block; text-align: center; margin-bottom: 24px;">Start 14-day trial</a>
+            <ul class="feature-checklist" style="text-align: left; font-size: 14px; display: flex; flex-direction: column; gap: 12px;">
+              <li><span class="feature-check">&#10003;</span> Everything in Standard</li>
+              <li><span class="feature-check">&#10003;</span> Round-robin meeting distribution</li>
+              <li><span class="feature-check">&#10003;</span> Salesforce & HubSpot integrations</li>
+              <li><span class="feature-check">&#10003;</span> Notetaker AI summaries included</li>
+              <li><span class="feature-check">&#10003;</span> Admin management & analytics</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo" aria-label="Calendly">
+            <svg class="logo-icon" viewBox="0 0 32 32" fill="none">
+              <defs>
+                <linearGradient id="calendly-grad-f" x1="16" y1="0" x2="16" y2="32" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#6AB0FF"/>
+                  <stop offset="1" stop-color="#4793EB"/>
+                </linearGradient>
+              </defs>
+              <path d="M32 16C32 28.07 26.56 32 16 32C5.44 32 0 28.05 0 16C0 3.95 5.44 0 16 0C26.56 0 32 3.95 32 16Z" fill="url(#calendly-grad-f)"/>
+              <path d="M16 28.58C7.7 28.58 3.42 25.49 3.42 16C3.42 6.51 7.7 3.42 16 3.42C24.3 3.42 28.58 6.51 28.58 16C28.58 25.49 24.3 28.58 16 28.58ZM22.85 9.19C18.46 4.8 11.84 4.31 8.06 8.09C4.27 11.88 4.76 18.5 9.15 22.89C13.54 27.27 20.16 27.76 23.94 23.98C27.73 20.2 27.24 13.57 22.85 9.19ZM16 20.34C17.77 20.34 19.27 19.12 19.82 17.44C19.87 17.29 20 17.18 20.16 17.18H22.05C22.21 17.18 22.34 17.33 22.32 17.49C21.9 21.18 19.77 22.44 16 22.44C11.78 22.44 9.61 20.86 9.61 16.04C9.61 11.21 11.78 9.64 16 9.64C19.77 9.64 21.9 10.89 22.32 14.59C22.34 14.75 22.21 14.89 22.05 14.89H20.16C20 14.89 19.87 14.79 19.82 14.64C19.27 12.95 17.77 11.73 16 11.73C13.77 11.73 11.96 13.66 11.96 16.04C11.96 18.41 13.77 20.34 16 20.34Z" fill="#fff"/>
+            </svg>
+            <svg class="logo-text" viewBox="0 0 117 28" fill="none">
+              <g fill="#94a3b8">
+                <path d="M10.29 0.86C11.75 0.86 13.08 1.13 14.31 1.69C15.53 2.24 16.57 2.96 17.44 3.87C18.31 4.77 18.97 5.77 19.44 6.85L15.75 8.35C15.26 7.29 14.54 6.42 13.57 5.74C12.6 5.06 11.51 4.72 10.29 4.72C9.16 4.72 8.12 5.02 7.17 5.62C6.23 6.22 5.49 7.04 4.95 8.06C4.41 9.08 4.14 10.22 4.14 11.48C4.14 12.74 4.41 13.88 4.95 14.9C5.49 15.92 6.23 16.73 7.17 17.34C8.12 17.94 9.16 18.23 10.29 18.23C11.51 18.23 12.6 17.89 13.57 17.22C14.54 16.54 15.43 15.61 16.03 14.8L19.16 16.94C18.65 17.67 18.09 18.41 17.44 19.09C16.57 20 15.53 20.72 14.31 21.28C13.08 21.83 11.75 22.1 10.29 22.1C8.39 22.1 6.66 21.64 5.09 20.7C3.52 19.77 2.28 18.49 1.37 16.87C0.46 15.24 0 13.44 0 11.48C0 9.51 0.46 7.72 1.37 6.09C2.28 4.47 3.52 3.19 5.09 2.26C6.66 1.33 8.39 0.86 10.29 0.86Z"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M27.67 6.31C29.59 6.31 31.29 6.89 32.56 7.85C33.73 8.72 34.49 10.41 34.49 12.59V21.85H30.54V20.04C30.03 20.6 29.39 21.08 28.6 21.45C27.65 21.91 26.73 22.14 25.56 22.14C24.56 22.14 23.8 21.96 23 21.61C22.21 21.26 21.58 20.76 21.12 20.11C20.66 19.45 20.43 18.69 20.43 17.81C20.43 16.25 21.1 14.97 22.29 14.21C23.48 13.45 24.61 13.11 26.39 12.95L28.77 12.78C29.29 12.74 29.92 12.65 30.17 12.38C30.38 12.16 30.57 11.88 30.57 11.42C30.57 10.73 29.93 10 28.84 9.79C27.66 9.57 26.48 9.78 25.7 10.06C24.64 10.43 23.39 11.24 22.6 12L20.39 9.35C21.35 8.32 22.44 7.56 23.77 7.02C25.08 6.49 26.26 6.31 27.67 6.31Z"/>
+                <path d="M40.87 21.84H36.92V0H40.87V21.84Z"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M50.43 6.31C54.54 6.31 57.55 9.47 57.55 13.82L47.35 16.63C47.97 17.69 49.43 18.66 50.88 18.66C52.87 18.66 54.45 17.71 55.92 16.2L58.2 18.83C56.2 20.86 53.93 22.12 50.6 22.12C45.96 22.12 42.66 18.99 42.66 14.07C42.66 9.65 45.64 6.31 50.43 6.31Z"/>
+                <path d="M68.15 6.32C69.35 6.32 70.42 6.59 71.36 7.13C72.29 7.67 73.02 8.42 73.53 9.37C74.04 10.33 74.29 11.41 74.29 12.61V21.85H70.31V13.31C70.31 12.66 70.17 12.08 69.88 11.57C69.6 11.06 69.19 10.66 68.67 10.38C68.15 10.09 67.54 9.95 66.86 9.95C66.21 9.95 65.62 10.09 65.1 10.38C64.58 10.66 64.16 11.06 63.86 11.57C63.55 12.08 63.4 12.66 63.4 13.31V21.85H59.42V6.61H63.4V8.58C63.82 8.04 64.33 7.58 64.94 7.2C65.88 6.61 66.95 6.32 68.15 6.32Z"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M92.23 21.84H88.24V20.04C87.87 20.44 87.46 20.8 87 21.11C85.96 21.8 84.76 22.14 83.4 22.14C82.04 22.14 80.8 21.8 79.68 21.11C78.56 20.42 77.68 19.47 77.04 18.26C76.4 17.05 76.08 15.7 76.08 14.23C76.08 12.77 76.4 11.44 77.04 10.23C77.68 9.02 78.56 8.06 79.68 7.37C80.8 6.67 82.04 6.32 83.4 6.32C84.76 6.32 85.96 6.66 87 7.35C87.46 7.66 87.87 8.01 88.24 8.42V0H92.23V21.84Z"/>
+                <path d="M98.59 21.84H94.64V0H98.59V21.84Z"/>
+                <path d="M108.09 20.65L112.33 6.62H116.34L109.99 27.7H105.98L107.77 21.85H104.58L99.96 6.62H104.2L108.09 20.65Z"/>
+              </g>
+            </svg>
+          </a>
+          <p class="footer-tagline">We make scheduling easy for everyone.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Twitter"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 0 0 -4 0"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="4"/><path d="M10 9l5 3l-5 3z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Products</h4>
+          <a href="#">Scheduling</a>
+          <a href="#">Callie (AI)</a>
+          <a href="#">Notetaker</a>
+          <a href="#">Contacts</a>
+          <a href="#">Payments</a>
+          <a href="#">All features</a>
+        </div>
+        <div class="footer-col">
+          <h4>Solutions</h4>
+          <a href="#">Sales</a>
+          <a href="#">Marketing</a>
+          <a href="#">Customer Success</a>
+          <a href="#">Recruiting</a>
+          <a href="#">Education</a>
+          <a href="#">Enterprise</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="#">Blog</a>
+          <a href="#">Help center</a>
+          <a href="#">Learning hub</a>
+          <a href="#">Developer docs</a>
+          <a href="#">Community</a>
+          <a href="#">What's new</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Careers</a>
+          <a href="#">Newsroom</a>
+          <a href="#">Security</a>
+          <a href="#">Contact us</a>
+          <a href="#">Privacy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Calendly. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
